@@ -3,18 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.detailleagues.fragementlast.LastMatchFragment">
+    tools:context=".ui.detailleagues.fragmentnext.NextMatchFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_lastmatch"
+        android:id="@+id/rv_teamleague"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar
-        android:id="@+id/progress_lastmatch"
+        android:id="@+id/progress_teamleague"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -22,7 +21,7 @@
         android:layout_marginTop="@dimen/space_16" />
 
     <TextView
-        android:id="@+id/tv_loadempty"
+        android:id="@+id/tv_empty_teamleague"
         style="@style/TextAppearance.MaterialComponents.Headline4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,8 +31,6 @@
         android:padding="@dimen/space_32"
         tools:text="@string/str_nomatch"
         android:textAlignment="center"
-        android:textAllCaps="false"
         android:textColor="@color/colorAccent"
-        android:textStyle="bold"
-        android:visibility="visible" />
+        android:textStyle="bold" />
 </RelativeLayout>

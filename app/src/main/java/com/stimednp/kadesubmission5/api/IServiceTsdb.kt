@@ -1,9 +1,12 @@
 package com.stimednp.kadesubmission5.api
 
 import com.stimednp.kadesubmission5.model.events.ResponseEvents
+import com.stimednp.kadesubmission5.model.events.ResponseNextMatch
 import com.stimednp.kadesubmission5.model.leagues.ResponseLeagues
 import com.stimednp.kadesubmission5.model.events.ResponseSearch
+import com.stimednp.kadesubmission5.model.standings.ResponseStandings
 import com.stimednp.kadesubmission5.model.teams.ResponseTeamsBadge
+import com.stimednp.kadesubmission5.model.teams.ResponseTeams
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
@@ -24,7 +27,7 @@ interface IServiceTsdb {
 
     //next match
     @GET("api/v1/json/1/eventsnextleague.php")
-    fun getNextMatch(@Query("id") id: String?): Deferred<Response<ResponseEvents>>
+    fun getNextMatch(@Query("id") id: String?): Deferred<Response<ResponseNextMatch>>
 
     //previous match
     @GET("api/v1/json/1/eventspastleague.php")
@@ -34,15 +37,23 @@ interface IServiceTsdb {
     @GET("api/v1/json/1/searchevents.php")
     fun getSearchEvent(@Query("e") e: String?): Deferred<Response<ResponseSearch>>
 
-    //detail team home
+    //detail team
     @GET("api/v1/json/1/lookupteam.php")
-    fun getDetailTeamH(@Query("id") idTeam: Int?): Deferred<Response<ResponseTeamsBadge>>
-
-    //detail team away
-    @GET("api/v1/json/1/lookupteam.php")
-    fun getDetailTeamA(@Query("id") idTeam: Int?): Deferred<Response<ResponseTeamsBadge>>
+    fun getTeamBadge(@Query("id") idTeam: String?): Deferred<Response<ResponseTeamsBadge>>
 
     //detailEvent
     @GET("api/v1/json/1/lookupevent.php")
     fun getDetailEvent(@Query("id") idEvent: String?): Deferred<Response<ResponseEvents>>
+
+    //list team
+    @GET("api/v1/json/1/lookup_all_teams.php")
+    fun getListTeam(@Query("id") idLeague: String?): Deferred<Response<ResponseTeams>>
+
+    //detail team
+    @GET("api/v1/json/1/lookupteam.php")
+    fun getDetailTeam(@Query("id") idTeam: String?): Deferred<Response<ResponseTeams>>
+
+    //get standing
+    @GET("api/v1/json/1/lookuptable.php")
+    fun getStanding(@Query("l") idLeague: String?): Deferred<Response<ResponseStandings>>
 }

@@ -1,6 +1,6 @@
 package com.stimednp.kadesubmission5.presenter.detailleagues.fragmentnext
 
-import com.stimednp.kadesubmission5.model.events.DataEventsMatch
+import com.stimednp.kadesubmission5.model.events.DataNextMatch
 import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 
 /**
@@ -8,6 +8,6 @@ import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
  */
 
 interface INextRepositoryCallback<T> {
-    fun onDataLoaded(data: ArrayList<DataEventsMatch>, itemsH: ArrayList<DataTeamsBadge>, itemsA: ArrayList<DataTeamsBadge>)
+    fun onDataLoaded(data: ArrayList<DataNextMatch>, itemsH: ArrayList<DataTeamsBadge>, itemsA: ArrayList<DataTeamsBadge>)
     fun onDataError()
 }

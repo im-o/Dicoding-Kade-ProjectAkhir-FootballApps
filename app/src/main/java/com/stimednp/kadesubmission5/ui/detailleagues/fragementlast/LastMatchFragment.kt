@@ -37,7 +37,7 @@ class LastMatchFragment : Fragment(), ILastMatchView {
         super.onViewCreated(view, savedInstanceState)
         idLeague = DetailsLeaguesActivity.idLeagues
         getLastMatch(idLeague.toString())
-        rv_lastmatch.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rv_lastmatch.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rv_lastmatch.adapter = EventMatchAdapter(context, itemEvents, itemTeamsH, itemTeamsA)
     }
 
@@ -75,6 +75,7 @@ class LastMatchFragment : Fragment(), ILastMatchView {
         itemTeamsH.addAll(itemsH)
         itemTeamsA.addAll(itemsA)
         rv_lastmatch.adapter?.notifyDataSetChanged()
+        toast("load 1")
     }
 
     override fun onDataError() {

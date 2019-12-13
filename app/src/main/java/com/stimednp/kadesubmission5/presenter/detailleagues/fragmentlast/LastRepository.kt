@@ -32,24 +32,24 @@ class LastRepository {
     }
 
     private fun savetoArrays(events: ArrayList<DataEventsMatch>, callback: ILastRepositoryCallback<ResponseEvents>) {
-        val badgeH = ArrayList<Int>()
-        val badgeA = ArrayList<Int>()
+        val badgeH = ArrayList<String>()
+        val badgeA = ArrayList<String>()
         for (i in events.indices) {
             val teamH = events[i].idHomeTeam
             val teamA = events[i].idAwayTeam
-            badgeH.add(teamH!!)
-            badgeA.add(teamA!!)
+            badgeH.add(teamH.toString())
+            badgeA.add(teamA.toString())
         }
         setIdTeam(events, badgeH, badgeA, callback)
     }
 
-    fun setIdTeam(events: ArrayList<DataEventsMatch>, teamH: ArrayList<Int>, teamA: ArrayList<Int>, callback: ILastRepositoryCallback<ResponseEvents>) {
+    fun setIdTeam(events: ArrayList<DataEventsMatch>, teamH: ArrayList<String>, teamA: ArrayList<String>, callback: ILastRepositoryCallback<ResponseEvents>) {
         GlobalScope.launch(Dispatchers.Main) {
             val itemsH = ArrayList<DataTeamsBadge>()
             val itemsA = ArrayList<DataTeamsBadge>()
             for (i in events.indices) {
-                val listIdHome = tsdbService.getDetailTeamH(teamH[i])
-                val listIdAway = tsdbService.getDetailTeamA(teamA[i])
+                val listIdHome = tsdbService.getTeamBadge(teamH[i])
+                val listIdAway = tsdbService.getTeamBadge(teamA[i])
                 try {
                     val responseH = listIdHome.await()
                     val bodyH = responseH.body()

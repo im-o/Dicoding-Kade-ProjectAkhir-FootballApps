@@ -1,9 +1,9 @@
 package com.stimednp.kadesubmission5.presenter.detailleagues.fragmentnext
 
 import com.stimednp.kadesubmission5.api.ApiClient
-import com.stimednp.kadesubmission5.model.events.DataEventsMatch
+import com.stimednp.kadesubmission5.model.events.DataNextMatch
 import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
-import com.stimednp.kadesubmission5.model.events.ResponseEvents
+import com.stimednp.kadesubmission5.model.events.ResponseNextMatch
 import com.stimednp.kadesubmission5.utils.EspressoIdlingResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class NextRepository {
     private val tsdbService = ApiClient.iServiceTsdb
-    fun getNextMatch(idLeague: String, callback: INextRepositoryCallback<ResponseEvents>) {
+    fun getNextMatch(idLeague: String, callback: INextRepositoryCallback<ResponseNextMatch>) {
         GlobalScope.launch(Dispatchers.Main) {
             val listIdEvent = tsdbService.getNextMatch(idLeague)
             try {
@@ -30,28 +30,28 @@ class NextRepository {
         }
     }
 
-    private fun savetoArrays(events: ArrayList<DataEventsMatch>, callback: INextRepositoryCallback<ResponseEvents>) {
-        val badgeH = ArrayList<Int>()
-        val badgeA = ArrayList<Int>()
+    private fun savetoArrays(events: ArrayList<DataNextMatch>, callback: INextRepositoryCallback<ResponseNextMatch>) {
+        val badgeH = ArrayList<String>()
+        val badgeA = ArrayList<String>()
 
         for (i in events.indices) {
             val teamH = events[i].idHomeTeam
             val teamA = events[i].idAwayTeam
 
-            badgeH.add(teamH!!)
-            badgeA.add(teamA!!)
+            badgeH.add(teamH.toString())
+            badgeA.add(teamA.toString())
         }
         setIdTeam(events, badgeH, badgeA, callback)
     }
 
-    private fun setIdTeam(events: ArrayList<DataEventsMatch>, teamH: ArrayList<Int>, teamA: ArrayList<Int>, callback: INextRepositoryCallback<ResponseEvents>) {
+    private fun setIdTeam(events: ArrayList<DataNextMatch>, teamH: ArrayList<String>, teamA: ArrayList<String>, callback: INextRepositoryCallback<ResponseNextMatch>) {
         val tsdbService = ApiClient.iServiceTsdb
         GlobalScope.launch(Dispatchers.Main) {
             val itemsH = ArrayList<DataTeamsBadge>()
             val itemsA = ArrayList<DataTeamsBadge>()
             for (i in events.indices) {
-                val listIdHome = tsdbService.getDetailTeamH(teamH[i])
-                val listIdAway = tsdbService.getDetailTeamA(teamA[i])
+                val listIdHome = tsdbService.getTeamBadge(teamH[i])
+                val listIdAway = tsdbService.getTeamBadge(teamA[i])
                 try {
                     val responseH = listIdHome.await()
                     val bodyH = responseH.body()
@@ -67,7 +67,7 @@ class NextRepository {
         }
     }
 
-    private fun setAdapter(itemsE: ArrayList<DataEventsMatch>, itemsH: ArrayList<DataTeamsBadge>, itemsA: ArrayList<DataTeamsBadge>, callback: INextRepositoryCallback<ResponseEvents>) {
+    private fun setAdapter(itemsE: ArrayList<DataNextMatch>, itemsH: ArrayList<DataTeamsBadge>, itemsA: ArrayList<DataTeamsBadge>, callback: INextRepositoryCallback<ResponseNextMatch>) {
         callback.onDataLoaded(itemsE, itemsH, itemsA)
     }
 }

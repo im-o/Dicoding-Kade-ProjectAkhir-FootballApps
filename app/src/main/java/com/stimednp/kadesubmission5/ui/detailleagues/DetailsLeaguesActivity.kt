@@ -13,8 +13,9 @@ import com.stimednp.kadesubmission5.model.leagues.DataLeagues
 import com.stimednp.kadesubmission5.presenter.detailleagues.DetailsLRepository
 import com.stimednp.kadesubmission5.ui.adapter.ViewPagerAdapter
 import com.stimednp.kadesubmission5.ui.detailleagues.fragementlast.LastMatchFragment
-import com.stimednp.kadesubmission5.ui.detailleagues.fragmentmatch.MatchFragment
 import com.stimednp.kadesubmission5.ui.detailleagues.fragmentnext.NextMatchFragment
+import com.stimednp.kadesubmission5.ui.detailleagues.fragmentstanding.StandingFragment
+import com.stimednp.kadesubmission5.ui.detailleagues.fragmentteam.TeamFragment
 import com.stimednp.kadesubmission5.ui.search.SearchActivity
 import com.stimednp.kadesubmission5.utils.EspressoIdlingResource
 import kotlinx.android.synthetic.main.activity_details_leagues.*
@@ -39,6 +40,11 @@ class DetailsLeaguesActivity : AppCompatActivity(), IDetailsLView {
         setupViewPager()
     }
 
+    private fun getLeaguesData(id: String?) {
+        detailsPresenter = DetailsPresenter(this, DetailsLRepository())
+        detailsPresenter.getLeaguesDetail(id)
+    }
+
     private fun setToolbar() {
         setSupportActionBar(htab_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
@@ -47,18 +53,14 @@ class DetailsLeaguesActivity : AppCompatActivity(), IDetailsLView {
         htab_toolbar.setNavigationOnClickListener { finish() }
     }
 
-    private fun setupViewPager() {
-        val pages = listOf(LastMatchFragment(), NextMatchFragment(), MatchFragment())
-        val strTab = listOf(R.string.str_last_match, R.string.str_next_match, R.string.str_match)
-        val strIc = listOf(R.drawable.ic_event_complete_black, R.drawable.ic_event_next_black, R.drawable.ic_event_next_black)
-        htab_viewpager.adapter = ViewPagerAdapter(this, strTab, pages, supportFragmentManager)
+    private fun setupViewPager() { //add fragment to tablayout
+        val pages = listOf(LastMatchFragment(), NextMatchFragment(), TeamFragment(), StandingFragment())
+        val strTab = listOf(R.string.str_last_match, R.string.str_next_match,  R.string.str_team, R.string.str_standing)
+//        val strIc = listOf(R.drawable.ic_event_complete_black, R.drawable.ic_event_next_black, R.drawable.ic_event_next_black)
+        val adapter = ViewPagerAdapter(this, strTab, pages, supportFragmentManager)
+        htab_viewpager.adapter = adapter
         htab_tablayout.setupWithViewPager(htab_viewpager)
-        for (i in pages.indices) htab_tablayout.getTabAt(i)?.setIcon(strIc[i])
-    }
-
-    private fun getLeaguesData(id: String?) {
-        detailsPresenter = DetailsPresenter(this, DetailsLRepository())
-        detailsPresenter.getLeaguesDetail(id)
+//        for (i in pages.indices) htab_tablayout.getTabAt(i)?.setIcon(strIc[i])
     }
 
     private fun showData(data: DataLeagues?) {

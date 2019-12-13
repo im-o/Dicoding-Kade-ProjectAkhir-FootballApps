@@ -20,10 +20,8 @@ class MatchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val fragment_last = LastMatchFragment()
-        val fragment_next = NextMatchFragment()
-        val fragmentMatch: ArrayList<Fragment> = arrayListOf(LastMatchFragment(), NextMatchFragment())
-        val idFragment: List<Int> = listOf(R.id.container_last_match, R.id.container_next_match)
+        val fragmentMatch = listOf<Fragment>(LastMatchFragment(), NextMatchFragment())
+        val idFragment = listOf(R.id.container_last_match, R.id.container_next_match)
         for (i in fragmentMatch.indices) childFragmentManager.beginTransaction()
             .replace(idFragment[i], fragmentMatch[i], fragmentMatch[i]::class.java.simpleName)
             .commit()

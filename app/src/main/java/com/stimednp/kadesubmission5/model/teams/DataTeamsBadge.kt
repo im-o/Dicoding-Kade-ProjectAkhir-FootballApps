@@ -10,6 +10,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class DataTeamsBadge(
-    var idTeam: Int?,
+    var idTeam: String?,
     var strTeamBadge: String?
 ) : Parcelable

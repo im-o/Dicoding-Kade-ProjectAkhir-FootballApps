@@ -35,8 +35,8 @@ class SearchRepository {
     @SuppressLint("DefaultLocale")
     private fun savetoArrays(events: ArrayList<DataEventsMatch>?, callback: ISearchRepositoryCallback<ResponseSearch>) {
         val eventItems = ArrayList<DataEventsMatch>()
-        val badgeH = ArrayList<Int>()
-        val badgeA = ArrayList<Int>()
+        val badgeH = ArrayList<String>()
+        val badgeA = ArrayList<String>()
 
         for (i in events?.indices!!) {
             val idH = events[i].idHomeTeam
@@ -45,8 +45,8 @@ class SearchRepository {
             val sportSoccer = events[i].strSport?.toLowerCase()
 
             if (sportSoccer == "soccer") {
-                badgeH.add(idH as Int)
-                badgeA.add(idA as Int)
+                badgeH.add(idH.toString())
+                badgeA.add(idA.toString())
                 eventItems.addAll(listOf(ev))
             }
         }
@@ -57,15 +57,15 @@ class SearchRepository {
         }
     }
 
-    private fun setIdTeam(events: ArrayList<DataEventsMatch>, teamH: ArrayList<Int>, teamA: ArrayList<Int>, callback: ISearchRepositoryCallback<ResponseSearch>) {
+    private fun setIdTeam(events: ArrayList<DataEventsMatch>, teamH: ArrayList<String>, teamA: ArrayList<String>, callback: ISearchRepositoryCallback<ResponseSearch>) {
         GlobalScope.launch(Dispatchers.Main) {
             val itemsH = ArrayList<DataTeamsBadge>()
             val itemsA = ArrayList<DataTeamsBadge>()
             if (events.size > 0) {
                 for (i in events.indices) {
                     try {
-                        val listIdHome = tsdbService.getDetailTeamH(teamH[i])
-                        val listIdAway = tsdbService.getDetailTeamA(teamA[i])
+                        val listIdHome = tsdbService.getTeamBadge(teamH[i])
+                        val listIdAway = tsdbService.getTeamBadge(teamA[i])
                         val responseH = listIdHome.await()
                         val bodyH = responseH.body()
                         val responseA = listIdAway.await()

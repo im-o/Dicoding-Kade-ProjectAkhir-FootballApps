@@ -3,9 +3,9 @@ package com.stimednp.kadesubmission5.presenter.detailleagues.fragmentnext
 import com.nhaarman.mockito_kotlin.argumentCaptor
 import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.verify
-import com.stimednp.kadesubmission5.model.events.DataEventsMatch
+import com.stimednp.kadesubmission5.model.events.DataNextMatch
 import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
-import com.stimednp.kadesubmission5.model.events.ResponseEvents
+import com.stimednp.kadesubmission5.model.events.ResponseNextMatch
 import com.stimednp.kadesubmission5.ui.detailleagues.fragmentnext.INextMatchView
 import com.stimednp.kadesubmission5.ui.detailleagues.fragmentnext.NextMatchPresenter
 import org.junit.After
@@ -25,7 +25,7 @@ class NextRepositoryTest {
     @Mock
     lateinit var nextRepository: NextRepository
     @Mock
-    lateinit var dataEventLeagues: ArrayList<DataEventsMatch>
+    lateinit var dataEventLeagues: ArrayList<DataNextMatch>
     @Mock
     lateinit var itemsH: ArrayList<DataTeamsBadge>
     @Mock
@@ -49,7 +49,7 @@ class NextRepositoryTest {
     fun getNextMatchSucces() {
         val idLeague = "4328"
         nextMatchPresenter.getNextMatch(idLeague)
-        argumentCaptor<INextRepositoryCallback<ResponseEvents>>().apply {
+        argumentCaptor<INextRepositoryCallback<ResponseNextMatch>>().apply {
             verify(nextRepository).getNextMatch(eq(idLeague), capture())
             firstValue.onDataLoaded(dataEventLeagues, itemsH, itemsA)
         }
@@ -63,7 +63,7 @@ class NextRepositoryTest {
     fun getNextMatchError() {
         val idLeague = ""
         nextMatchPresenter.getNextMatch(idLeague)
-        argumentCaptor<INextRepositoryCallback<ResponseEvents>>().apply {
+        argumentCaptor<INextRepositoryCallback<ResponseNextMatch>>().apply {
             verify(nextRepository).getNextMatch(eq(idLeague), capture())
             firstValue.onDataError()
         }

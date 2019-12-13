@@ -8,10 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.stimednp.kadesubmission5.R
-import com.stimednp.kadesubmission5.model.events.DataEventsMatch
+import com.stimednp.kadesubmission5.model.events.DataNextMatch
 import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentnext.NextRepository
 import com.stimednp.kadesubmission5.ui.adapter.EventMatchAdapter
+import com.stimednp.kadesubmission5.ui.adapter.NextMatchAdapter
 import com.stimednp.kadesubmission5.ui.detailleagues.DetailsLeaguesActivity
 import com.stimednp.kadesubmission5.utils.EspressoIdlingResource
 import com.stimednp.kadesubmission5.utils.invisible
@@ -25,10 +26,9 @@ import org.jetbrains.anko.support.v4.toast
  */
 class NextMatchFragment : Fragment(), INextMatchView {
     private lateinit var nextMatchPresenter: NextMatchPresenter
-    var idLeague: String? = null
-    var itemEvents = ArrayList<DataEventsMatch>()
-    var itemTeamsH = ArrayList<DataTeamsBadge>()
-    var itemTeamsA = ArrayList<DataTeamsBadge>()
+    private var itemEvents = ArrayList<DataNextMatch>()
+    private var itemTeamsH = ArrayList<DataTeamsBadge>()
+    private var itemTeamsA = ArrayList<DataTeamsBadge>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_next_match, container, false)
@@ -36,11 +36,10 @@ class NextMatchFragment : Fragment(), INextMatchView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        idLeague = DetailsLeaguesActivity.idLeagues
+        val idLeague = DetailsLeaguesActivity.idLeagues
         getNextMatch(idLeague)
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        rv_nextmatch.layoutManager = layoutManager
-        rv_nextmatch.adapter = EventMatchAdapter(context, itemEvents, itemTeamsH, itemTeamsA)
+        rv_nextmatch.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        rv_nextmatch.adapter = NextMatchAdapter(context, itemEvents, itemTeamsH, itemTeamsA)
     }
 
     private fun getNextMatch(idLeague: String?) {
@@ -65,7 +64,7 @@ class NextMatchFragment : Fragment(), INextMatchView {
         tv_empty_nextmatch.invisible()
     }
 
-    override fun onDataLoaded(data: ArrayList<DataEventsMatch>, itemsH: ArrayList<DataTeamsBadge>, itemsA: ArrayList<DataTeamsBadge>) {
+    override fun onDataLoaded(data: ArrayList<DataNextMatch>, itemsH: ArrayList<DataTeamsBadge>, itemsA: ArrayList<DataTeamsBadge>) {
         if (!EspressoIdlingResource.idlingResource.isIdleNow){
             //task is complete -> DELETE this after test (Memory leak)
             EspressoIdlingResource.decrement()
@@ -77,6 +76,7 @@ class NextMatchFragment : Fragment(), INextMatchView {
         itemTeamsH.addAll(itemsH)
         itemTeamsA.addAll(itemsA)
         rv_nextmatch.adapter?.notifyDataSetChanged()
+        toast("load 2")
     }
 
     override fun onDataError() {
