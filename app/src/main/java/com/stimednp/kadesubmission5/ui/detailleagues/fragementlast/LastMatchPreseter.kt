@@ -1,8 +1,8 @@
 package com.stimednp.kadesubmission5.ui.detailleagues.fragementlast
 
 import com.stimednp.kadesubmission5.model.events.DataEventsMatch
-import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.model.events.ResponseEvents
+import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentlast.ILastRepositoryCallback
 import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentlast.LastRepository
 

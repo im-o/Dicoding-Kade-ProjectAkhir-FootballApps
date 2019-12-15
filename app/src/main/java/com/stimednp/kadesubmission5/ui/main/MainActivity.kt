@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity(), IMainView {
     }
 
     override fun onDataLoaded(data: ArrayList<DataLeagues>) {
-        if (!EspressoIdlingResource.idlingResource.isIdleNow){
+        if (!EspressoIdlingResource.idlingResource.isIdleNow) {
             //task is complete -> DELETE this after test (Memory leak)
             EspressoIdlingResource.decrement()
         }

@@ -86,81 +86,16 @@
                 app:layout_constraintStart_toStartOf="@+id/cardView"
                 app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
-            <LinearLayout
+            <include
+                layout="@layout/item_socialmedia"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8"
                 android:gravity="center"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="@+id/tv_desc_league"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/cardView"
-                app:layout_constraintTop_toBottomOf="@+id/view">
-
-                <TextView
-                    android:id="@+id/tv_web"
-                    style="@style/TextAppearance.MaterialComponents.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_8"
-                    android:layout_marginEnd="@dimen/space_8"
-                    android:background="@drawable/bg_ripple_effect"
-                    android:clickable="true"
-                    android:drawableTop="@drawable/ic_internet"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:padding="@dimen/space_3"
-                    android:text="@string/website"
-                    android:textColor="@color/colorWeb" />
-
-                <TextView
-                    android:id="@+id/tv_fb"
-                    style="@style/TextAppearance.MaterialComponents.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_8"
-                    android:layout_marginEnd="@dimen/space_8"
-                    android:background="@drawable/bg_ripple_effect"
-                    android:clickable="true"
-                    android:drawableTop="@drawable/ic_facebook_logo"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:padding="@dimen/space_3"
-                    android:text="@string/facebook"
-                    android:textColor="@color/colorFacebook" />
-
-                <TextView
-                    android:id="@+id/tv_twit"
-                    style="@style/TextAppearance.MaterialComponents.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_8"
-                    android:layout_marginEnd="@dimen/space_8"
-                    android:background="@drawable/bg_ripple_effect"
-                    android:clickable="true"
-                    android:drawableTop="@drawable/ic_twitter"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:padding="@dimen/space_3"
-                    android:text="@string/twitter"
-                    android:textColor="@color/colorTwitter" />
-
-                <TextView
-                    android:id="@+id/tv_yt"
-                    style="@style/TextAppearance.MaterialComponents.Caption"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_8"
-                    android:layout_marginEnd="@dimen/space_8"
-                    android:background="@drawable/bg_ripple_effect"
-                    android:clickable="true"
-                    android:drawableTop="@drawable/ic_youtube"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:padding="@dimen/space_3"
-                    android:text="@string/youtube"
-                    android:textColor="@color/colorYoutube" />
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

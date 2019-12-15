@@ -2,8 +2,8 @@ package com.stimednp.kadesubmission5.ui.detailleagues.fragmentstanding
 
 
 import android.os.Bundle
-import android.util.Log.e
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -14,6 +14,8 @@ import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentstanding.StandingsRepository
 import com.stimednp.kadesubmission5.ui.adapter.StandingAdapter
 import com.stimednp.kadesubmission5.ui.detailleagues.DetailsLeaguesActivity
+import com.stimednp.kadesubmission5.utils.invisible
+import com.stimednp.kadesubmission5.utils.visible
 import kotlinx.android.synthetic.main.fragment_standing.*
 import org.jetbrains.anko.support.v4.toast
 
@@ -31,6 +33,7 @@ class StandingFragment : Fragment(), IStandingView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         val idLeague = DetailsLeaguesActivity.idLeagues
         rv_standings.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rv_standings.adapter = StandingAdapter(tables, badges)
@@ -49,9 +52,11 @@ class StandingFragment : Fragment(), IStandingView {
     }
 
     override fun showTextEmpty(text: String) {
+        tv_empty_stand.visible()
     }
 
     override fun hideTextEmpty() {
+        tv_empty_stand.invisible()
     }
 
     override fun onDataLoaded(data: ArrayList<DataStandings>, badge: ArrayList<DataTeamsBadge>) {
@@ -60,18 +65,23 @@ class StandingFragment : Fragment(), IStandingView {
         tables.addAll(data)
         badges.addAll(badge)
         rv_standings?.adapter?.notifyDataSetChanged()
-        toast("Succes")
-        e("INIII","Standings : ${data.size} ")
-        e("INIII","Badge : ${badge[0]}")
     }
 
     override fun onDataError() {
-        toast("ERORRR")
+        toast("Error or No Data")
     }
 
     override fun onShowLoading() {
+        progress_stand.visible()
     }
 
     override fun onHideLoading() {
+        progress_stand.invisible()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val menuItem = menu.findItem(R.id.item_search)
+        if (!menuItem.equals(null)) menuItem.isVisible = false
     }
 }

@@ -2,8 +2,8 @@ package com.stimednp.kadesubmission5.presenter.detailleagues.fragmentnext
 
 import com.stimednp.kadesubmission5.api.ApiClient
 import com.stimednp.kadesubmission5.model.events.DataNextMatch
-import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.model.events.ResponseNextMatch
+import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.utils.EspressoIdlingResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

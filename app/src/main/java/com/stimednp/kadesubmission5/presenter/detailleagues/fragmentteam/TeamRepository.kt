@@ -20,7 +20,7 @@ class TeamRepository {
                 val resultBody = result.body()
                 val teams = resultBody?.teams
                 callback.onDataLoaded(teams!!)
-            }catch (er: Exception){
+            } catch (er: Exception) {
                 callback.onDataError()
             }
         }

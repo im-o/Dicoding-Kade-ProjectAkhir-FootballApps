@@ -2,9 +2,7 @@ package com.stimednp.kadesubmission5.ui.detailleagues.fragementlast
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.stimednp.kadesubmission5.R
@@ -13,10 +11,12 @@ import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentlast.LastRepository
 import com.stimednp.kadesubmission5.ui.adapter.EventMatchAdapter
 import com.stimednp.kadesubmission5.ui.detailleagues.DetailsLeaguesActivity
+import com.stimednp.kadesubmission5.ui.search.SearchActivity
 import com.stimednp.kadesubmission5.utils.EspressoIdlingResource
 import com.stimednp.kadesubmission5.utils.invisible
 import com.stimednp.kadesubmission5.utils.visible
 import kotlinx.android.synthetic.main.fragment_last_match.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -35,6 +35,7 @@ class LastMatchFragment : Fragment(), ILastMatchView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         idLeague = DetailsLeaguesActivity.idLeagues
         getLastMatch(idLeague.toString())
         rv_lastmatch.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -64,7 +65,7 @@ class LastMatchFragment : Fragment(), ILastMatchView {
     }
 
     override fun onDataLoaded(data: ArrayList<DataEventsMatch>, itemsH: ArrayList<DataTeamsBadge>, itemsA: ArrayList<DataTeamsBadge>) {
-        if (!EspressoIdlingResource.idlingResource.isIdleNow){
+        if (!EspressoIdlingResource.idlingResource.isIdleNow) {
             //task is complete -> DELETE this after test (Memory leak)
             EspressoIdlingResource.decrement()
         }
@@ -75,7 +76,6 @@ class LastMatchFragment : Fragment(), ILastMatchView {
         itemTeamsH.addAll(itemsH)
         itemTeamsA.addAll(itemsA)
         rv_lastmatch.adapter?.notifyDataSetChanged()
-        toast("load 1")
     }
 
     override fun onDataError() {
@@ -89,5 +89,18 @@ class LastMatchFragment : Fragment(), ILastMatchView {
 
     override fun onHideLoading() {
         progress_lastmatch.invisible()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val menuItem = menu.findItem(R.id.item_search)
+        menuItem.isVisible = true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_search -> startActivity<SearchActivity>()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

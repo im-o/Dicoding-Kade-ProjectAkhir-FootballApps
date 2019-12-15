@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import com.stimednp.kadesubmission5.R
@@ -16,11 +15,10 @@ import com.stimednp.kadesubmission5.ui.detailleagues.fragementlast.LastMatchFrag
 import com.stimednp.kadesubmission5.ui.detailleagues.fragmentnext.NextMatchFragment
 import com.stimednp.kadesubmission5.ui.detailleagues.fragmentstanding.StandingFragment
 import com.stimednp.kadesubmission5.ui.detailleagues.fragmentteam.TeamFragment
-import com.stimednp.kadesubmission5.ui.search.SearchActivity
 import com.stimednp.kadesubmission5.utils.EspressoIdlingResource
 import kotlinx.android.synthetic.main.activity_details_leagues.*
 import kotlinx.android.synthetic.main.item_header.*
-import org.jetbrains.anko.startActivity
+import kotlinx.android.synthetic.main.item_socialmedia.*
 import org.jetbrains.anko.toast
 
 class DetailsLeaguesActivity : AppCompatActivity(), IDetailsLView {
@@ -55,10 +53,11 @@ class DetailsLeaguesActivity : AppCompatActivity(), IDetailsLView {
 
     private fun setupViewPager() { //add fragment to tablayout
         val pages = listOf(LastMatchFragment(), NextMatchFragment(), TeamFragment(), StandingFragment())
-        val strTab = listOf(R.string.str_last_match, R.string.str_next_match,  R.string.str_team, R.string.str_standing)
-//        val strIc = listOf(R.drawable.ic_event_complete_black, R.drawable.ic_event_next_black, R.drawable.ic_event_next_black)
+        val strTab = listOf(R.string.str_last_match, R.string.str_next_match, R.string.str_team, R.string.str_standing)
+//        val strIc = listOf(R.drawable.ic_event_complete_black, R.drawable.ic_event_next_black, R.drawable.ic_event_next_black, R.drawable.ic_event_complete_black)
         val adapter = ViewPagerAdapter(this, strTab, pages, supportFragmentManager)
         htab_viewpager.adapter = adapter
+        htab_viewpager.offscreenPageLimit = strTab.size
         htab_tablayout.setupWithViewPager(htab_viewpager)
 //        for (i in pages.indices) htab_tablayout.getTabAt(i)?.setIcon(strIc[i])
     }
@@ -73,13 +72,6 @@ class DetailsLeaguesActivity : AppCompatActivity(), IDetailsLView {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.option_search, menu)
         return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.item_search -> startActivity<SearchActivity>()
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun goUri(url: String?) {
@@ -113,7 +105,7 @@ class DetailsLeaguesActivity : AppCompatActivity(), IDetailsLView {
     }
 
     override fun onDataLoaded(data: DataLeagues) {
-        if (!EspressoIdlingResource.idlingResource.isIdleNow){
+        if (!EspressoIdlingResource.idlingResource.isIdleNow) {
             //task is complete -> DELETE this after test (Memory leak)
             EspressoIdlingResource.decrement()
         }
@@ -122,6 +114,7 @@ class DetailsLeaguesActivity : AppCompatActivity(), IDetailsLView {
     }
 
     override fun onDataError() {
+        toast("Error or No Data")
         //need this for future
     }
 

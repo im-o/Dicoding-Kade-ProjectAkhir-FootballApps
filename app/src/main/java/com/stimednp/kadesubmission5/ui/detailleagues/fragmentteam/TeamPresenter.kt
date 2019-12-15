@@ -9,10 +9,10 @@ import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentteam.TeamRep
  * Created by rivaldy on 12/12/2019.
  */
 
-class TeamPresenter(private val view: ITeamView, private val teamRepository: TeamRepository): ITeamPresenter {
+class TeamPresenter(private val view: ITeamView, private val teamRepository: TeamRepository) : ITeamPresenter {
     override fun getListTeam(id: String) {
         view.onShowLoading()
-        teamRepository.getListTeam(id, object : ITeamRepositoryCallback<ResponseTeams>{
+        teamRepository.getListTeam(id, object : ITeamRepositoryCallback<ResponseTeams> {
             override fun onDataLoaded(data: ArrayList<DataTeams>) {
                 view.onDataLoaded(data)
                 view.onHideLoading()

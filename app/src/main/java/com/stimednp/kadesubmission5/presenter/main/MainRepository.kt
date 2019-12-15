@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
  * Created by rivaldy on 12/8/2019.
  */
 
-class MainRepository() {
+class MainRepository {
     private val tsdbService = ApiClient.iServiceTsdb
     private val items: ArrayList<DataLeagues> = ArrayList()
     private var sizeItems: Int? = null

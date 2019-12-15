@@ -100,7 +100,7 @@ class SearchActivity : AppCompatActivity(), ISearchView, SearchView.OnQueryTextL
     }
 
     override fun onDataLoaded(data: ArrayList<DataEventsMatch>, teamH: ArrayList<DataTeamsBadge>, teamA: ArrayList<DataTeamsBadge>) {
-        if (!EspressoIdlingResource.idlingResource.isIdleNow){
+        if (!EspressoIdlingResource.idlingResource.isIdleNow) {
             //task is complete -> DELETE this after test (Memory leak)
             EspressoIdlingResource.decrement()
         }
@@ -113,7 +113,7 @@ class SearchActivity : AppCompatActivity(), ISearchView, SearchView.OnQueryTextL
     }
 
     override fun onDataError() {
-        if (!EspressoIdlingResource.idlingResource.isIdleNow){
+        if (!EspressoIdlingResource.idlingResource.isIdleNow) {
             //task is complete -> DELETE this after test (Memory leak)
             EspressoIdlingResource.decrement()
         }

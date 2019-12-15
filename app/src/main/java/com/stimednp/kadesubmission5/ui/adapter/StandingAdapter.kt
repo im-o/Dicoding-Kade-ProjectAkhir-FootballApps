@@ -29,7 +29,7 @@ class StandingAdapter(private val dataStandings: ArrayList<DataStandings>, priva
     class StandingViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bindItem(data: DataStandings, badge: DataTeamsBadge, num: Int) {
             val urlBadge = "${badge.strTeamBadge}/preview"
-            view.tv_number.text = (num+1).toString()
+            view.tv_number.text = (num + 1).toString()
             view.tv_teamname.text = data.name
             view.tv_mp.text = data.played.toString()
             view.tv_w.text = data.win.toString()

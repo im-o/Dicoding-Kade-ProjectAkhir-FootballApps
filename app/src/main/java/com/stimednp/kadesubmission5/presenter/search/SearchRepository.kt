@@ -3,8 +3,8 @@ package com.stimednp.kadesubmission5.presenter.search
 import android.annotation.SuppressLint
 import com.stimednp.kadesubmission5.api.ApiClient
 import com.stimednp.kadesubmission5.model.events.DataEventsMatch
-import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.model.events.ResponseSearch
+import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.utils.EspressoIdlingResource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -50,11 +50,7 @@ class SearchRepository {
                 eventItems.addAll(listOf(ev))
             }
         }
-        if (eventItems.size > 0) {
-            setIdTeam(eventItems, badgeH, badgeA, callback)
-        } else {
-            callback.onDataError()
-        }
+        if (eventItems.size > 0) setIdTeam(eventItems, badgeH, badgeA, callback) else callback.onDataError()
     }
 
     private fun setIdTeam(events: ArrayList<DataEventsMatch>, teamH: ArrayList<String>, teamA: ArrayList<String>, callback: ISearchRepositoryCallback<ResponseSearch>) {

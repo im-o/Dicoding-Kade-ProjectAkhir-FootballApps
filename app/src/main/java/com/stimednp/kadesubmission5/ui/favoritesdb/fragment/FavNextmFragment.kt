@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.stimednp.kadesubmission5.R
 import com.stimednp.kadesubmission5.db.MydbOpenHelper.databaseNext
-import com.stimednp.kadesubmission5.model.db.DataFavorites
+import com.stimednp.kadesubmission5.model.db.DataFavoriteEvent
 import com.stimednp.kadesubmission5.ui.adapter.FavoriteAdapter
 import com.stimednp.kadesubmission5.utils.visible
 import kotlinx.android.synthetic.main.fragment_fav_nextm.*
@@ -20,7 +20,7 @@ import org.jetbrains.anko.support.v4.onRefresh
  * A simple [Fragment] subclass.
  */
 class FavNextmFragment : Fragment() {
-    private var itemFavorites: ArrayList<DataFavorites> = arrayListOf()
+    private var itemFavorites: ArrayList<DataFavoriteEvent> = arrayListOf()
     private var adapter: FavoriteAdapter? = null
 
     override fun onCreateView(
@@ -48,8 +48,8 @@ class FavNextmFragment : Fragment() {
     private fun showFavorite() {
         itemFavorites.clear()
         context?.databaseNext?.use {
-            val result = select(DataFavorites.TABLE_FAVORITE)
-            val favorite = result.parseList(classParser<DataFavorites>())
+            val result = select(DataFavoriteEvent.TABLE_FAVORITE)
+            val favorite = result.parseList(classParser<DataFavoriteEvent>())
             itemFavorites.addAll(favorite)
             adapter?.notifyDataSetChanged()
         }

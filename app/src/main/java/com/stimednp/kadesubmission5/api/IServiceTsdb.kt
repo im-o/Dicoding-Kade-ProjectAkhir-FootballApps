@@ -2,11 +2,11 @@ package com.stimednp.kadesubmission5.api
 
 import com.stimednp.kadesubmission5.model.events.ResponseEvents
 import com.stimednp.kadesubmission5.model.events.ResponseNextMatch
-import com.stimednp.kadesubmission5.model.leagues.ResponseLeagues
 import com.stimednp.kadesubmission5.model.events.ResponseSearch
+import com.stimednp.kadesubmission5.model.leagues.ResponseLeagues
 import com.stimednp.kadesubmission5.model.standings.ResponseStandings
-import com.stimednp.kadesubmission5.model.teams.ResponseTeamsBadge
 import com.stimednp.kadesubmission5.model.teams.ResponseTeams
+import com.stimednp.kadesubmission5.model.teams.ResponseTeamsBadge
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
@@ -52,6 +52,10 @@ interface IServiceTsdb {
     //detail team
     @GET("api/v1/json/1/lookupteam.php")
     fun getDetailTeam(@Query("id") idTeam: String?): Deferred<Response<ResponseTeams>>
+
+    //search team
+    @GET("api/v1/json/1/searchteams.php")
+    fun getSearchTeam(@Query("t") strTeam: String?): Deferred<Response<ResponseTeams>>
 
     //get standing
     @GET("api/v1/json/1/lookuptable.php")

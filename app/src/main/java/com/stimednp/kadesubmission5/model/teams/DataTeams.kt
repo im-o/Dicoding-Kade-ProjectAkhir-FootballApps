@@ -6,6 +6,7 @@ data class DataTeams(
     val strAlternate: String,
     val strDescriptionEN: String,
     val strLeague: String,
+    val strSport: String,
     val strTeam: String,
     val strTeamBadge: String,
     val strTeamFanart1: String,

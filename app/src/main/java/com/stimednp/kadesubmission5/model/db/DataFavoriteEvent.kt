@@ -4,7 +4,7 @@ package com.stimednp.kadesubmission5.model.db
  * Created by rivaldy on 11/27/2019.
  */
 
-data class DataFavorites(
+data class DataFavoriteEvent(
     val id: Long?,
     val idEvent: String?,
     val dateEvent: String?,

@@ -8,7 +8,7 @@ import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentstanding.ISt
  * Created by rivaldy on 12/13/2019.
  */
 
-interface IStandingView: IStandingsRepositoryCallback<ResponseStandings>, IView {
+interface IStandingView : IStandingsRepositoryCallback<ResponseStandings>, IView {
     fun showMsgSucces(text: String)
     fun showMsgFail(text: String)
     fun showTextEmpty(text: String)

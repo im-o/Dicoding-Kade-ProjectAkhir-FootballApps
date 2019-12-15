@@ -11,11 +11,13 @@
         android:roundIcon="@drawable/ic_soccer_svgrepo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.stimednp.kadesubmission5.ui.favoritesdb.FavoritesActivity"></activity>
-        <activity android:name="com.stimednp.kadesubmission5.ui.search.SearchActivity" />
-        <activity android:name="com.stimednp.kadesubmission5.ui.detailevents.DetailsEventActivity" />
-        <activity android:name="com.stimednp.kadesubmission5.ui.detailleagues.DetailsLeaguesActivity" />
-        <activity android:name="com.stimednp.kadesubmission5.ui.main.MainActivity">
+        <activity android:name=".ui.detailteams.DetailTeamActivity"></activity>
+        <activity android:name=".ui.searchteam.SearchTeamActivity" />
+        <activity android:name=".ui.favoritesdb.FavoritesActivity" />
+        <activity android:name=".ui.search.SearchActivity" />
+        <activity android:name=".ui.detailevents.DetailsEventActivity" />
+        <activity android:name=".ui.detailleagues.DetailsLeaguesActivity" />
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

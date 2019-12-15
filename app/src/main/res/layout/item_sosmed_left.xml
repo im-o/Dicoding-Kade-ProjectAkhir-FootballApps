@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    app:layout_constraintEnd_toEndOf="@+id/tv_desc_league"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="@+id/cardView"
+    app:layout_constraintTop_toBottomOf="@+id/view">
+
+    <TextView
+        android:id="@+id/tv_webt"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ripple_effect"
+        android:clickable="true"
+        android:drawableTop="@drawable/ic_internet"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="@dimen/space_3"
+        android:text="@string/website"
+        android:textColor="@color/colorWeb"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_fbt"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ripple_effect"
+        android:clickable="true"
+        android:drawableTop="@drawable/ic_facebook_logo"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="@dimen/space_3"
+        android:text="@string/facebook"
+        android:textColor="@color/colorFacebook"
+        app:layout_constraintEnd_toStartOf="@+id/tv_igt"
+        app:layout_constraintStart_toEndOf="@+id/tv_webt"
+        app:layout_constraintTop_toTopOf="@+id/tv_webt" />
+
+    <TextView
+        android:id="@+id/tv_igt"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ripple_effect"
+        android:clickable="true"
+        android:drawableTop="@drawable/ic_instagram_svgrepo"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="@dimen/space_3"
+        android:text="@string/instagram"
+        android:textColor="@color/colorFacebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_fbt" />
+
+    <TextView
+        android:id="@+id/tv_twitt"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ripple_effect"
+        android:clickable="true"
+        android:drawableTop="@drawable/ic_twitter"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="@dimen/space_3"
+        android:text="@string/twitter"
+        android:textColor="@color/colorTwitter"
+        app:layout_constraintEnd_toStartOf="@+id/tv_ytt"
+        app:layout_constraintStart_toEndOf="@+id/tv_igt"
+        app:layout_constraintTop_toTopOf="@+id/tv_igt" />
+
+    <TextView
+        android:id="@+id/tv_ytt"
+        style="@style/TextAppearance.MaterialComponents.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ripple_effect"
+        android:clickable="true"
+        android:drawableTop="@drawable/ic_youtube"
+        android:focusable="true"
+        android:gravity="center"
+        android:padding="@dimen/space_3"
+        android:text="@string/youtube"
+        android:textColor="@color/colorYoutube"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_twitt" />
+</androidx.constraintlayout.widget.ConstraintLayout>

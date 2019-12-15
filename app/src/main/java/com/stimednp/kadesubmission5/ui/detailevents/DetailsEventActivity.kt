@@ -14,8 +14,8 @@ import com.squareup.picasso.Picasso
 import com.stimednp.kadesubmission5.R
 import com.stimednp.kadesubmission5.db.MydbOpenHelper.databaseLast
 import com.stimednp.kadesubmission5.db.MydbOpenHelper.databaseNext
+import com.stimednp.kadesubmission5.model.db.DataFavoriteEvent
 import com.stimednp.kadesubmission5.model.events.DataEventsMatch
-import com.stimednp.kadesubmission5.model.db.DataFavorites
 import com.stimednp.kadesubmission5.presenter.detailematch.DetailsERepository
 import com.stimednp.kadesubmission5.utils.EspressoIdlingResource
 import com.stimednp.kadesubmission5.utils.UtilsUI
@@ -81,7 +81,7 @@ class DetailsEventActivity : AppCompatActivity(), IDetailsEView {
     }
 
     override fun onDataLoaded(data: DataEventsMatch) {
-        if (!EspressoIdlingResource.idlingResource.isIdleNow){
+        if (!EspressoIdlingResource.idlingResource.isIdleNow) {
             //task is complete -> DELETE this after test (Memory leak)
             EspressoIdlingResource.decrement()
         }
@@ -120,24 +120,24 @@ class DetailsEventActivity : AppCompatActivity(), IDetailsEView {
         try {
             databaseLast.use {
                 insert(
-                    DataFavorites.TABLE_FAVORITE,
-                    DataFavorites.ID_EVENT to listItem.idEvent,
-                    DataFavorites.STR_DATEEV to listItem.dateEvent,
-                    DataFavorites.STR_TIMEEV to listItem.strTime,
-                    DataFavorites.STR_EVENT to listItem.strEvent,
-                    DataFavorites.STR_SPORT to listItem.strSport,
-                    DataFavorites.STR_LEAGUE to listItem.strLeague,
-                    DataFavorites.STR_TEAMH to listItem.strHomeTeam,
-                    DataFavorites.STR_TEAMA to listItem.strAwayTeam,
-                    DataFavorites.INT_SCOREH to listItem.intHomeScore,
-                    DataFavorites.INT_SCOREA to listItem.intAwayScore,
-                    DataFavorites.STR_BADGEH to badgeH,
-                    DataFavorites.STR_BADGEA to badgeA
+                    DataFavoriteEvent.TABLE_FAVORITE,
+                    DataFavoriteEvent.ID_EVENT to listItem.idEvent,
+                    DataFavoriteEvent.STR_DATEEV to listItem.dateEvent,
+                    DataFavoriteEvent.STR_TIMEEV to listItem.strTime,
+                    DataFavoriteEvent.STR_EVENT to listItem.strEvent,
+                    DataFavoriteEvent.STR_SPORT to listItem.strSport,
+                    DataFavoriteEvent.STR_LEAGUE to listItem.strLeague,
+                    DataFavoriteEvent.STR_TEAMH to listItem.strHomeTeam,
+                    DataFavoriteEvent.STR_TEAMA to listItem.strAwayTeam,
+                    DataFavoriteEvent.INT_SCOREH to listItem.intHomeScore,
+                    DataFavoriteEvent.INT_SCOREA to listItem.intAwayScore,
+                    DataFavoriteEvent.STR_BADGEH to badgeH,
+                    DataFavoriteEvent.STR_BADGEA to badgeA
                 )
             }
-            toast("Sukses tambah ke favorite")
+            toast("Succes added to favorites")
         } catch (er: SQLiteConstraintException) {
-            toast("Gagal tambah ke favorite -> ${er.message}")
+            toast("Failed to delete favorite! -> ${er.message}")
             e("INIII", "ERRROR ${er.message}")
         }
     }
@@ -146,24 +146,24 @@ class DetailsEventActivity : AppCompatActivity(), IDetailsEView {
         try {
             databaseNext.use {
                 insert(
-                    DataFavorites.TABLE_FAVORITE,
-                    DataFavorites.ID_EVENT to listItem.idEvent,
-                    DataFavorites.STR_DATEEV to listItem.dateEvent,
-                    DataFavorites.STR_TIMEEV to listItem.strTime,
-                    DataFavorites.STR_EVENT to listItem.strEvent,
-                    DataFavorites.STR_SPORT to listItem.strSport,
-                    DataFavorites.STR_LEAGUE to listItem.strLeague,
-                    DataFavorites.STR_TEAMH to listItem.strHomeTeam,
-                    DataFavorites.STR_TEAMA to listItem.strAwayTeam,
-                    DataFavorites.INT_SCOREH to listItem.intHomeScore,
-                    DataFavorites.INT_SCOREA to listItem.intAwayScore,
-                    DataFavorites.STR_BADGEH to badgeH,
-                    DataFavorites.STR_BADGEA to badgeA
+                    DataFavoriteEvent.TABLE_FAVORITE,
+                    DataFavoriteEvent.ID_EVENT to listItem.idEvent,
+                    DataFavoriteEvent.STR_DATEEV to listItem.dateEvent,
+                    DataFavoriteEvent.STR_TIMEEV to listItem.strTime,
+                    DataFavoriteEvent.STR_EVENT to listItem.strEvent,
+                    DataFavoriteEvent.STR_SPORT to listItem.strSport,
+                    DataFavoriteEvent.STR_LEAGUE to listItem.strLeague,
+                    DataFavoriteEvent.STR_TEAMH to listItem.strHomeTeam,
+                    DataFavoriteEvent.STR_TEAMA to listItem.strAwayTeam,
+                    DataFavoriteEvent.INT_SCOREH to listItem.intHomeScore,
+                    DataFavoriteEvent.INT_SCOREA to listItem.intAwayScore,
+                    DataFavoriteEvent.STR_BADGEH to badgeH,
+                    DataFavoriteEvent.STR_BADGEA to badgeA
                 )
             }
-            toast("Sukses tambah ke favorite")
+            toast("Succes added to favorites")
         } catch (er: SQLiteConstraintException) {
-            toast("Gagal tambah ke favorite -> ${er.message}")
+            toast("Failed to delete favorite! -> ${er.message}")
             e("INIII", "ERRROR ${er.message}")
         }
     }
@@ -173,14 +173,14 @@ class DetailsEventActivity : AppCompatActivity(), IDetailsEView {
         try {
             databaseLast.use {
                 delete(
-                    DataFavorites.TABLE_FAVORITE,
-                    "(${DataFavorites.ID_EVENT} = {id})",
+                    DataFavoriteEvent.TABLE_FAVORITE,
+                    "(${DataFavoriteEvent.ID_EVENT} = {id})",
                     "id" to id
                 )
             }
-            toast("Sukses hapus dari favorite")
+            toast("Succes remove from favorite")
         } catch (er: SQLiteConstraintException) {
-            toast("Gagal tambah ke favorite -> ${er.message}")
+            toast("Failed to delete favorite! -> ${er.message}")
             e("INIII", "ERRROR ${er.message}")
         }
     }
@@ -190,12 +190,12 @@ class DetailsEventActivity : AppCompatActivity(), IDetailsEView {
         try {
             databaseNext.use {
                 delete(
-                    DataFavorites.TABLE_FAVORITE,
-                    "(${DataFavorites.ID_EVENT} = {id})",
+                    DataFavoriteEvent.TABLE_FAVORITE,
+                    "(${DataFavoriteEvent.ID_EVENT} = {id})",
                     "id" to id
                 )
             }
-            toast("Sukses hapus dari favorite")
+            toast("Succes remove from favorite")
         } catch (er: SQLiteConstraintException) {
             toast("Gagal hapus data -> ${er.message}")
             e("INIII", "ERRROR ${er.message}")

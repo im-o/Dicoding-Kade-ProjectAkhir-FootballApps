@@ -1,9 +1,8 @@
 package com.stimednp.kadesubmission5.ui.detailleagues.fragmentnext
 
 import com.stimednp.kadesubmission5.model.events.DataNextMatch
-import com.stimednp.kadesubmission5.model.events.ResponseEvents
-import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.model.events.ResponseNextMatch
+import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentnext.INextRepositoryCallback
 import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentnext.NextRepository
 

@@ -1,24 +1,23 @@
 package com.stimednp.kadesubmission5.ui.detailleagues.fragmentnext
 
 
+//import kotlinx.android.synthetic.main.fragment_last_match.*
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.stimednp.kadesubmission5.R
 import com.stimednp.kadesubmission5.model.events.DataNextMatch
 import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentnext.NextRepository
-import com.stimednp.kadesubmission5.ui.adapter.EventMatchAdapter
 import com.stimednp.kadesubmission5.ui.adapter.NextMatchAdapter
 import com.stimednp.kadesubmission5.ui.detailleagues.DetailsLeaguesActivity
+import com.stimednp.kadesubmission5.ui.search.SearchActivity
 import com.stimednp.kadesubmission5.utils.EspressoIdlingResource
 import com.stimednp.kadesubmission5.utils.invisible
 import com.stimednp.kadesubmission5.utils.visible
-//import kotlinx.android.synthetic.main.fragment_last_match.*
 import kotlinx.android.synthetic.main.fragment_next_match.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -36,6 +35,7 @@ class NextMatchFragment : Fragment(), INextMatchView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         val idLeague = DetailsLeaguesActivity.idLeagues
         getNextMatch(idLeague)
         rv_nextmatch.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -65,7 +65,7 @@ class NextMatchFragment : Fragment(), INextMatchView {
     }
 
     override fun onDataLoaded(data: ArrayList<DataNextMatch>, itemsH: ArrayList<DataTeamsBadge>, itemsA: ArrayList<DataTeamsBadge>) {
-        if (!EspressoIdlingResource.idlingResource.isIdleNow){
+        if (!EspressoIdlingResource.idlingResource.isIdleNow) {
             //task is complete -> DELETE this after test (Memory leak)
             EspressoIdlingResource.decrement()
         }
@@ -76,7 +76,6 @@ class NextMatchFragment : Fragment(), INextMatchView {
         itemTeamsH.addAll(itemsH)
         itemTeamsA.addAll(itemsA)
         rv_nextmatch.adapter?.notifyDataSetChanged()
-        toast("load 2")
     }
 
     override fun onDataError() {
@@ -90,5 +89,18 @@ class NextMatchFragment : Fragment(), INextMatchView {
 
     override fun onHideLoading() {
         progress_nextmatch.invisible()
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        val menuItem = menu.findItem(R.id.item_search)
+        menuItem.isVisible = true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_search -> startActivity<SearchActivity>()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

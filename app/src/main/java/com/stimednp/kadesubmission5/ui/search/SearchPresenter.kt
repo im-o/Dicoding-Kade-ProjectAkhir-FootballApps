@@ -1,8 +1,8 @@
 package com.stimednp.kadesubmission5.ui.search
 
 import com.stimednp.kadesubmission5.model.events.DataEventsMatch
-import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.model.events.ResponseSearch
+import com.stimednp.kadesubmission5.model.teams.DataTeamsBadge
 import com.stimednp.kadesubmission5.presenter.search.ISearchRepositoryCallback
 import com.stimednp.kadesubmission5.presenter.search.SearchRepository
 

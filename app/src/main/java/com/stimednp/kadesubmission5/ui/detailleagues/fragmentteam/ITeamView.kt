@@ -8,7 +8,7 @@ import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentteam.ITeamRe
  * Created by rivaldy on 12/12/2019.
  */
 
-interface ITeamView: ITeamRepositoryCallback<ResponseTeams>, IView {
+interface ITeamView : ITeamRepositoryCallback<ResponseTeams>, IView {
     fun showMsgSucces(text: String)
     fun showMsgFail(text: String)
     fun showTextEmpty(text: String)

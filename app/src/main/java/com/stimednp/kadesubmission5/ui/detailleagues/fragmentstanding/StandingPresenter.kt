@@ -10,10 +10,10 @@ import com.stimednp.kadesubmission5.presenter.detailleagues.fragmentstanding.Sta
  * Created by rivaldy on 12/13/2019.
  */
 
-class StandingPresenter(private val view: IStandingView, private val standingsRepository: StandingsRepository): IStandingPresenter {
+class StandingPresenter(private val view: IStandingView, private val standingsRepository: StandingsRepository) : IStandingPresenter {
     override fun getStandings(idLeague: String) {
         view.onShowLoading()
-        standingsRepository.getData(idLeague, object : IStandingsRepositoryCallback<ResponseStandings>{
+        standingsRepository.getData(idLeague, object : IStandingsRepositoryCallback<ResponseStandings> {
             override fun onDataLoaded(data: ArrayList<DataStandings>, badge: ArrayList<DataTeamsBadge>) {
                 view.onDataLoaded(data, badge)
                 view.onHideLoading()
