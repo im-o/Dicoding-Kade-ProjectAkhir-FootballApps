@@ -14,7 +14,20 @@
 **Detail Leagues**
 ---
 
-<img src="https://github.com/im-o/MyResource/blob/master/image-kade/prev-next.jpeg" width="50%" height="50%">
+<img src="https://github.com/im-o/MyResource/blob/master/image-kade/tab-last.jpeg" width="50%" height="50%">  
+<img src="https://github.com/im-o/MyResource/blob/master/image-kade/tab-next.jpeg" width="50%" height="50%">  
+<img src="https://github.com/im-o/MyResource/blob/master/image-kade/tab-team.jpeg" width="50%" height="50%">  
+<img src="https://github.com/im-o/MyResource/blob/master/image-kade/tab-standings.jpeg" width="50%" height="50%">  
+
+**Detail Team**  
+---  
+
+<img src="https://github.com/im-o/MyResource/blob/master/image-kade/detail-team.jpeg" width="50%" height="50%">
+
+**Search Team**  
+---  
+
+<img src="https://github.com/im-o/MyResource/blob/master/image-kade/search-team.jpeg" width="50%" height="50%">
 
 
 **Search Event Match**
@@ -32,4 +45,7 @@
 **Favorite Match**
 ---
 
-<img src="https://github.com/im-o/MyResource/blob/master/image-kade/favorite.jpeg" width="50%" height="50%">
+<img src="https://github.com/im-o/MyResource/blob/master/image-kade/favorite-3.jpeg" width="50%" height="50%">
+<img src="https://github.com/im-o/MyResource/blob/master/image-kade/fav-next.jpeg" width="50%" height="50%">
+<img src="https://github.com/im-o/MyResource/blob/master/image-kade/fav-team.jpeg" width="50%" height="50%">
+
