@@ -1,7 +1,6 @@
 package com.stimednp.kadesubmission5.ui.detailleagues.fragmentnext
 
 
-//import kotlinx.android.synthetic.main.fragment_last_match.*
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment

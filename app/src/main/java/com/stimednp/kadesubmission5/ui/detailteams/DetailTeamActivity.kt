@@ -165,8 +165,8 @@ class DetailTeamActivity : AppCompatActivity(), IDTeamView {
         }
     }
 
-    private fun changeIconFavorite(idTeam: String?) {
-        val isFavorite = checkPrefById(idTeam!!)
+    private fun changeIconFavorite(idTeam: String) {
+        val isFavorite = checkPrefById(idTeam)
         if (isFavorite) {
             menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_black_24dp)
         } else {

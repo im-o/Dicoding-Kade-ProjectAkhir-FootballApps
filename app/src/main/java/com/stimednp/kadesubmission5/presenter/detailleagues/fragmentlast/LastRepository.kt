@@ -15,7 +15,6 @@ import kotlinx.coroutines.launch
 
 class LastRepository {
     private val tsdbService = ApiClient.iServiceTsdb
-
     fun getLastMatch(idLeague: String, callback: ILastRepositoryCallback<ResponseEvents>) {
         GlobalScope.launch(Dispatchers.Main) {
             val listIdEvent = tsdbService.getPrevMatch(idLeague)
@@ -43,7 +42,7 @@ class LastRepository {
         setIdTeam(events, badgeH, badgeA, callback)
     }
 
-    fun setIdTeam(events: ArrayList<DataEventsMatch>, teamH: ArrayList<String>, teamA: ArrayList<String>, callback: ILastRepositoryCallback<ResponseEvents>) {
+    private fun setIdTeam(events: ArrayList<DataEventsMatch>, teamH: ArrayList<String>, teamA: ArrayList<String>, callback: ILastRepositoryCallback<ResponseEvents>) {
         GlobalScope.launch(Dispatchers.Main) {
             val itemsH = ArrayList<DataTeamsBadge>()
             val itemsA = ArrayList<DataTeamsBadge>()

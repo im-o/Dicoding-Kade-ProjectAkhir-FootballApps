@@ -21,7 +21,7 @@ class DetailsERepository {
                 val response = listDetail.await()
                 if (response.isSuccessful) {
                     val resbody = response.body()
-                    callback.onDataLoaded(resbody?.events!![0])
+                    if (resbody != null) callback.onDataLoaded(resbody.events[0])
                 }
             } catch (er: Exception) {
                 callback.onDataError()
